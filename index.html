@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Netflix - Plateforme de streaming">
+    <title>Netmovie</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body
+    style="background-color: #141414; color: white; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin: 0;">
+
+    <div id="login-page"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: #000;">
+        <h1 style="color: #e50914; font-size: 3rem; margin-bottom: 30px;">NETMOVIE</h1>
+        <div
+            style="background: rgba(0,0,0,0.75); padding: 60px; border-radius: 8px; display: flex; flex-direction: column; gap: 20px; width: 300px; border: 1px solid #333;">
+            <h2 style="margin-top: 0;">S'identifier</h2>
+            <input type="text" id="username" placeholder="Nom d'utilisateur"
+                style="padding: 12px; border-radius: 4px; border: none; background: #333; color: white;">
+            <input type="password" id="password" placeholder="Mot de passe"
+                style="padding: 12px; border-radius: 4px; border: none; background: #333; color: white;">
+            <button onclick="verifierConnexion()"
+                style="padding: 12px; background: #e50914; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1rem; margin-top: 10px;">Se
+                connecter</button>
+            <p id="login-error" style="color: #e87c03; font-size: 0.9rem; display: none; text-align: center;">
+                Identifiants incorrects. Réessayez.</p>
+        </div>
+    </div>
+
+    <div id="main-site" style="display: none;">
+        <nav class="navbar"
+            style="display: flex; align-items: center; padding: 20px 50px; background: rgba(0,0,0,0.9); position: fixed; width: 100%; top: 0; z-index: 1000; box-sizing: border-box;">
+            <h1 onclick="retourAccueil()"
+                style="color: #e50914; cursor: pointer; margin-right: 40px; margin-top: 0; margin-bottom: 0;">NETMOVIE
+            </h1>
+
+            <div id="search-container" class="search-container" style="display: none;">
+                <input type="text" id="search-bar" placeholder="Titres, genres..." class="search-input">
+            </div>
+        </nav>
+
+        <div id="accueil-content" style="padding-top: 80px;">
+            <section class="hero"
+                style="height: 40vh; background: linear-gradient(to bottom, transparent, #141414), url('image/hero-bg.jpg'); background-size: cover; display: flex; align-items: flex-end; padding: 50px;">
+                <div class="hero-content">
+                    <h1>Bienvenue</h1>
+                </div>
+            </section>
+            <section class="hero"
+                style="height: 40vh; background: linear-gradient(to bottom, transparent, #141414), url('image/hero-bg.jpg'); background-size: cover; display: flex; align-items: center; padding: 10px;">
+            </section>
+            <div class="row">
+                <h2 id="row-title">Tous les contenu</h2>
+                <div class="movies-container" id="trending"></div>
+            </div>
+        </div>
+
+        <div id="section-categories" style="display: none; padding: 120px 50px;">
+            <h2 style="margin-bottom: 30px;">Parcourir par genre</h2>
+            <div class="genres-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                <div class="genre-card" onclick="filtrerParGenre('Action')"
+                    style="background: #333; padding: 40px; text-align: center; cursor: pointer; border-radius: 8px;">
+                    Action</div>
+                <div class="genre-card" onclick="filtrerParGenre('Animés')"
+                    style="background: #333; padding: 40px; text-align: center; cursor: pointer; border-radius: 8px;">
+                    Animés</div>
+                <div class="genre-card" onclick="filtrerParGenre('SF & Fantastique')"
+                    style="background: #333; padding: 40px; text-align: center; cursor: pointer; border-radius: 8px;">SF
+                    & Fantastique</div>
+            </div>
+        </div>
+
+        <div id="movie-details" style="display: none; padding: 120px 50px;">
+            <button onclick="retourAccueil()"
+                style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; margin-bottom: 30px;">←
+                Retour</button>
+            <div style="display: flex; gap: 40px; align-items: flex-start;">
+                <div style="flex: 1;">
+                    <h1 id="details-title" style="font-size: 3rem; margin-bottom: 10px;"></h1>
+                    <div id="rating-container" style="margin-bottom: 20px;"></div>
+                    <p id="details-synopsis"
+                        style="font-size: 1.1rem; color: #ccc; line-height: 1.6; margin-bottom: 30px;"></p>
+                    <div id="episodes-area">
+                        <h3 style="border-bottom: 1px solid #333; padding-bottom: 10px;">Versions / Épisodes</h3>
+                        <div id="list-container"
+                            style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;"></div>
+                    </div>
+                </div>
+                <div style="flex: 2;">
+                    <video id="video-player" controls preload="auto"
+                        style="width: 100%; border-radius: 8px; background: black; opacity: 1;"></video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
